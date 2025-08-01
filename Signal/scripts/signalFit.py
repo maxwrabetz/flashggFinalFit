@@ -244,7 +244,16 @@ if not opt.skipVertexScenarioSplit:
       if (len(procReplacementFit.split("_")) <= 2) and (procReplacementFit.split("_")[-1] in ["in", "out"]):
         d = reduceDataset(inputWS.data("%s_%s_%s_%s_%s"%(procToData(procReplacementFit.split("_")[0]),procToData(procReplacementFit.split("_")[-1]),mp,sqrts__,catReplacementFit)),aset)
       else:
+        print("Available datasets in WS:")
+        for key in inputWS.allData():
+            print("  ->", key.GetName())
+        print("Trying to load dataset:")
+        print("  procReplacementFit:", procReplacementFit)
+        print("  catReplacementFit:", catReplacementFit)
+        print("  composed name:", "%s_%s_%s_%s"%(procToData(procReplacementFit.split("_")[0]), mp, sqrts__, catReplacementFit))
         d = reduceDataset(inputWS.data("%s_%s_%s_%s"%(procToData(procReplacementFit.split("_")[0]),mp,sqrts__,catReplacementFit)),aset)
+        print("  inputWS contains:")
+        inputWS.Print()
       datasetWVForFit[mp] = splitRVWV(d,aset,mode="WV")
       inputWS.Delete()
       f.Close()

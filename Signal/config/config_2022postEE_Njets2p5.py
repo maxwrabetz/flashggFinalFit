@@ -8,7 +8,7 @@ signalScriptCfg = {
   'cats':'auto', # if auto: inferred automatically from (0) workspace
   #'ext':'earlyAnalysis_freeze_include', # output directory extension
   'ext':'earlyAnalysis_Njets2p5_2022postEE', # output directory extension
-  'analysis':'earlyAnalysisDiffNJ', # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
+  'analysis':'earlyAnalysisDiffNjets2p5', # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   'year':'2022postEE', # Use 'combined' if merging all years: not recommended
   'massPoints':'120,125,130', # You can now run with a single mass point if necessary
 

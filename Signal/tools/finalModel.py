@@ -137,6 +137,8 @@ class FinalModel:
   def buildXSBRSplines(self):
     mh = np.linspace(120.,130.,101)
     # XS
+    print("PROC from workspace:", self.proc)
+    print("Available keys in xsbrMap:", self.xsbrMap.keys())
     fp = self.xsbrMap[self.proc]['factor'] if 'factor' in self.xsbrMap[self.proc] else 1.
     mp = self.xsbrMap[self.proc]['mode']
     xs = fp*self.XSBR[mp]

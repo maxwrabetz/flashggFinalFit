@@ -33,7 +33,7 @@ class Trees2WSData(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflow):
     # input_path = law.Parameter(description="Path to the data input ROOT file")
     output_dir = law.Parameter(default = '', description="Path to the output directory")
     variable = law.Parameter(default='', description="Variable to be used for output folder naming")
-    year = law.Parameter(default='2022', description="Year")
+    year = law.Parameter(default='2223', description="Year")
     apply_mass_cut = law.Parameter(default=False, description="Apply mass cut")
     mass_cut_range = law.Parameter(default='100,180', description="Mass cut range")
     batch_flavor = law.Parameter(default="htcondor", description="Batch system to use")

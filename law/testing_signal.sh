@@ -1,0 +1,17 @@
+python3 ../Signal/scripts/signalFit.py \
+    --cat RECO_Njets2p5_3p0_100p0_cat0 \
+    --proc ggh_Njets2p5_0p0_100p0_out \
+    --ext earlyAnalysis_Njets2p5_2223postEE \
+    --outputDir /net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/output_2223_Njets2p5 \
+    --inputWSDir /net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/output_2223_Njets2p5/input_output_Njets2p5_2223postEE/ws_signal \
+    --year 2223postEE \
+    --scales ScaleEE,ScaleEB \
+    --scalesCorr FNUF,Material \
+    --scalesGlobal NonLinearity,Geant4 \
+    --smears Smearing \
+    --analysis earlyAnalysisDiffNjets2p5 \
+    --replacementThreshold 1 \
+    --massPoints 120,125,130 \
+    --beamspotWidthData 3.5 \
+    --beamspotWidthMC 3.732 \
+    --doPlots

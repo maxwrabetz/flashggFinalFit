@@ -311,62 +311,62 @@ models = {
 --PO \"map=.*/vbf_YH_0p9_2p5.*:r_YH_0p9_2p5[1,-3,3]\"",
 
   "Njets2p5_5bin":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
---PO \"map=.*/ggh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_3p0_4p0.*:r_NJ_3p0_4p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_3p0_4p0.*:r_NJ_3p0_4p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_3p0_4p0.*:r_NJ_3p0_4p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_3p0_4p0.*:r_NJ_3p0_4p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_4p0_100p0.*:r_NJ_4p0_100p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_4p0_100p0.*:r_NJ_4p0_100p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_4p0_100p0.*:r_NJ_4p0_100p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_4p0_100p0.*:r_NJ_4p0_100p0[1,0,3]\"",
+--PO \"map=.*/ggh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_3p0_4p0.*:r_Njets2p5_3p0_4p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_3p0_4p0.*:r_Njets2p5_3p0_4p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_3p0_4p0.*:r_Njets2p5_3p0_4p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_3p0_4p0.*:r_Njets2p5_3p0_4p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_4p0_100p0.*:r_Njets2p5_4p0_100p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_4p0_100p0.*:r_Njets2p5_4p0_100p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_4p0_100p0.*:r_Njets2p5_4p0_100p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_4p0_100p0.*:r_Njets2p5_4p0_100p0[1,0,3]\"",
 
   "Njets2p5":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
---PO \"map=.*/ggh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,-3,3]\" \
---PO \"map=.*/tth_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,-3,3]\" \
---PO \"map=.*/vh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,-3,3]\" \
---PO \"map=.*/vbf_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,-3,3]\" \
---PO \"map=.*/ggh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,-3,3]\" \
---PO \"map=.*/tth_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,-3,3]\" \
---PO \"map=.*/vh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,-3,3]\" \
---PO \"map=.*/vbf_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,-3,3]\" \
---PO \"map=.*/ggh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,-3,3]\" \
---PO \"map=.*/tth_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,-3,3]\" \
---PO \"map=.*/vh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,-3,3]\" \
---PO \"map=.*/vbf_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,-3,3]\" \
---PO \"map=.*/ggh_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,-3,3]\" \
---PO \"map=.*/tth_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,-3,3]\" \
---PO \"map=.*/vh_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,-3,3]\" \
---PO \"map=.*/vbf_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,-3,3]\"",
+--PO \"map=.*/ggh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,-3,3]\" \
+--PO \"map=.*/tth_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,-3,3]\" \
+--PO \"map=.*/vh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,-3,3]\" \
+--PO \"map=.*/vbf_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,-3,3]\" \
+--PO \"map=.*/ggh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,-3,3]\" \
+--PO \"map=.*/tth_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,-3,3]\" \
+--PO \"map=.*/vh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,-3,3]\" \
+--PO \"map=.*/vbf_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,-3,3]\" \
+--PO \"map=.*/ggh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,-3,3]\" \
+--PO \"map=.*/tth_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,-3,3]\" \
+--PO \"map=.*/vh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,-3,3]\" \
+--PO \"map=.*/vbf_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,-3,3]\" \
+--PO \"map=.*/ggh_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,-3,3]\" \
+--PO \"map=.*/tth_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,-3,3]\" \
+--PO \"map=.*/vh_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,-3,3]\" \
+--PO \"map=.*/vbf_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,-3,3]\"",
 
   "Njets2p5_0_3_fine":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
---PO \"map=.*/ggh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_0p0_1p0.*:r_NJ_0p0_1p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_1p0_2p0.*:r_NJ_1p0_2p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_2p0_3p0.*:r_NJ_2p0_3p0[1,0,3]\" \
---PO \"map=.*/ggh_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,0,3]\" \
---PO \"map=.*/tth_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,0,3]\" \
---PO \"map=.*/vh_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,0,3]\" \
---PO \"map=.*/vbf_NJ_3p0_100p0.*:r_NJ_3p0_100p0[1,0,3]\"",
+--PO \"map=.*/ggh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_0p0_1p0.*:r_Njets2p5_0p0_1p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_1p0_2p0.*:r_Njets2p5_1p0_2p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_2p0_3p0.*:r_Njets2p5_2p0_3p0[1,0,3]\" \
+--PO \"map=.*/ggh_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,0,3]\" \
+--PO \"map=.*/tth_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,0,3]\" \
+--PO \"map=.*/vh_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,0,3]\" \
+--PO \"map=.*/vbf_Njets2p5_3p0_100p0.*:r_Njets2p5_3p0_100p0[1,0,3]\"",
 
   "ptJ0":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggh_PTJ0_0p0_30p0.*:r_PTJ0_0p0_30p0[1,-3,3]\" \
@@ -491,10 +491,10 @@ models = {
 --PO \"map=.*/tth_YJ0_2p0_2p5.*:r_YJ0_2p0_2p5[1,0,3]\" \
 --PO \"map=.*/vh_YJ0_2p0_2p5.*:r_YJ0_2p0_2p5[1,0,3]\" \
 --PO \"map=.*/vbf_YJ0_2p0_2p5.*:r_YJ0_2p0_2p5[1,0,3]\" \
---PO \"map=.*/ggh_YJ0_NJ0.*:r_YJ0_NJ0[1,0,3]\" \
---PO \"map=.*/tth_YJ0_NJ0.*:r_YJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vh_YJ0_NJ0.*:r_YJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vbf_YJ0_NJ0.*:r_YJ0_NJ0[1,0,3]\"",
+--PO \"map=.*/ggh_YJ0_Njets2p50.*:r_YJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/tth_YJ0_Njets2p50.*:r_YJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vh_YJ0_Njets2p50.*:r_YJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vbf_YJ0_Njets2p50.*:r_YJ0_Njets2p50[1,0,3]\"",
 
   "AbsPhiHJ0":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggh_AbsPhiHJ0_0p0_2p6.*:r_AbsPhiHJ0_0p0_2p6[1,0,3]\" \
@@ -513,10 +513,10 @@ models = {
 --PO \"map=.*/tth_AbsPhiHJ0_3p03_Pi.*:r_AbsPhiHJ0_3p03_Pi[1,0,3]\" \
 --PO \"map=.*/vh_AbsPhiHJ0_3p03_Pi.*:r_AbsPhiHJ0_3p03_Pi[1,0,3]\" \
 --PO \"map=.*/vbf_AbsPhiHJ0_3p03_Pi.*:r_AbsPhiHJ0_3p03_Pi[1,0,3]\" \
---PO \"map=.*/ggh_AbsPhiHJ0_NJ0.*:r_AbsPhiHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/tth_AbsPhiHJ0_NJ0.*:r_AbsPhiHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vh_AbsPhiHJ0_NJ0.*:r_AbsPhiHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vbf_AbsPhiHJ0_NJ0.*:r_AbsPhiHJ0_NJ0[1,0,3]\"",
+--PO \"map=.*/ggh_AbsPhiHJ0_Njets2p50.*:r_AbsPhiHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/tth_AbsPhiHJ0_Njets2p50.*:r_AbsPhiHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vh_AbsPhiHJ0_Njets2p50.*:r_AbsPhiHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vbf_AbsPhiHJ0_Njets2p50.*:r_AbsPhiHJ0_Njets2p50[1,0,3]\"",
 
   "AbsPhiHJ0_otherName":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggh_AbsPhiHJ0_0p0_2p6.*:r_AbsPhiHJ0_0p0_2p6[1,0,3]\" \
@@ -535,10 +535,10 @@ models = {
 --PO \"map=.*/tth_AbsPhiHJ0_3p03_3p1415926.*:r_AbsPhiHJ0_3p03_3p1415926[1,0,3]\" \
 --PO \"map=.*/vh_AbsPhiHJ0_3p03_3p1415926.*:r_AbsPhiHJ0_3p03_3p1415926[1,0,3]\" \
 --PO \"map=.*/vbf_AbsPhiHJ0_3p03_3p1415926.*:r_AbsPhiHJ0_3p03_3p1415926[1,0,3]\" \
---PO \"map=.*/ggh_AbsPhiHJ0_NJ.*:r_AbsPhiHJ0_NJ[1,0,3]\" \
---PO \"map=.*/tth_AbsPhiHJ0_NJ.*:r_AbsPhiHJ0_NJ[1,0,3]\" \
---PO \"map=.*/vh_AbsPhiHJ0_NJ.*:r_AbsPhiHJ0_NJ[1,0,3]\" \
---PO \"map=.*/vbf_AbsPhiHJ0_NJ.*:r_AbsPhiHJ0_NJ[1,0,3]\"",
+--PO \"map=.*/ggh_AbsPhiHJ0_Njets2p5.*:r_AbsPhiHJ0_Njets2p5[1,0,3]\" \
+--PO \"map=.*/tth_AbsPhiHJ0_Njets2p5.*:r_AbsPhiHJ0_Njets2p5[1,0,3]\" \
+--PO \"map=.*/vh_AbsPhiHJ0_Njets2p5.*:r_AbsPhiHJ0_Njets2p5[1,0,3]\" \
+--PO \"map=.*/vbf_AbsPhiHJ0_Njets2p5.*:r_AbsPhiHJ0_Njets2p5[1,0,3]\"",
 
   "AbsYHJ0":"-P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
 --PO \"map=.*/ggh_AbsYHJ0_0p0_0p6.*:r_AbsYHJ0_0p0_0p6[1,0,3]\" \
@@ -557,10 +557,10 @@ models = {
 --PO \"map=.*/tth_AbsYHJ0_1p9_100p0.*:r_AbsYHJ0_1p9_100p0[1,0,3]\" \
 --PO \"map=.*/vh_AbsYHJ0_1p9_100p0.*:r_AbsYHJ0_1p9_100p0[1,0,3]\" \
 --PO \"map=.*/vbf_AbsYHJ0_1p9_100p0.*:r_AbsYHJ0_1p9_100p0[1,0,3]\" \
---PO \"map=.*/ggh_AbsYHJ0_NJ0.*:r_AbsYHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/tth_AbsYHJ0_NJ0.*:r_AbsYHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vh_AbsYHJ0_NJ0.*:r_AbsYHJ0_NJ0[1,0,3]\" \
---PO \"map=.*/vbf_AbsYHJ0_NJ0.*:r_AbsYHJ0_NJ0[1,0,3]\"",
+--PO \"map=.*/ggh_AbsYHJ0_Njets2p50.*:r_AbsYHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/tth_AbsYHJ0_Njets2p50.*:r_AbsYHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vh_AbsYHJ0_Njets2p50.*:r_AbsYHJ0_Njets2p50[1,0,3]\" \
+--PO \"map=.*/vbf_AbsYHJ0_Njets2p50.*:r_AbsYHJ0_Njets2p50[1,0,3]\"",
 
 
 

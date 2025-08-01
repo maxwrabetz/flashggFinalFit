@@ -31,7 +31,7 @@ def convert_boolean_string(string):
 class FinalFits(law.Task):
     variable = law.Parameter(default="", description="Variable to be used")
     output_dir = law.Parameter(default = '', description="Path to the output directory")
-    year = law.Parameter(default='2022', description="Year")
+    year = law.Parameter(default='2223', description="Year")
     
     # Unblinded fits and impacts
     unblinded_fits = law.Parameter(default=False, description="Produce unblinded fits")
@@ -50,8 +50,8 @@ class FinalFits(law.Task):
     unblinded_diff_spectra = law.Parameter(default=False, description="Produce unblinded differential spectra for the given variable")
     asimov_diff_spectra = law.Parameter(default=False, description="Produce Asimov differential spectra for the given variable")
     
-    batch_system = law.Parameter(default="slurm", description="Batch system to use")
-    batch_flavor = law.Parameter(default="slurm", description="Special treatment for PSI Slurm batch system")
+    batch_system = law.Parameter(default="local", description="Batch system to use")
+    batch_flavor = law.Parameter(default="local", description="Special treatment for PSI Slurm batch system")
     
     def requires(self):
         # req() is defined on all tasks and handles the passing of all parameter values that are
@@ -74,9 +74,6 @@ class FinalFits(law.Task):
             output_dir = config['outputFolder']
         else:
             output_dir = self.output_dir
-        
-        tasks["Background"] = Background(variable=self.variable, output_dir=output_dir, year=self.year, batch_flavor=self.batch_flavor, version=self.variable if self.variable != "" else "inclusive", workflow=self.batch_system)
-
         
         if convert_boolean_string(self.unblinded_fits):
             tasks["CreateUnblindedFit"] = CreateUnblindedFit(variable=self.variable, output_dir=output_dir, year=self.year, batch_flavor=self.batch_flavor, version=self.variable if self.variable != "" else "inclusive", workflow=self.batch_system)

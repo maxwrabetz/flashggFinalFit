@@ -1,23 +1,22 @@
 # Config file: options for signal fitting
 
-
-# Tests
-# Test Trees2WS: law run Trees2WS --variable Njets2p5 --workers 4 --output-dir /afs/cern.ch/user/n/niharrin/cernbox/PhD/Higgs/CMSSW_14_1_0_pre4/src/flashggFinalFit/law/output/test_t2w_diff/t2w --doDiffSplitting True --doSystematic True
-
-outputFolder: '/eos/home-n/niharrin/PhD/Higgs/CMSSW_14_1_0_pre4/src/flashggFinalFit/output/forPaper_24_10_14_Njets2p5/'
+outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/output_2223_Njets2p5'
 
 inputFiles:
   # Trees2WS
-  Trees2WSData: '/eos/cms/store/group/phys_higgs/cmshgg/niharrin/2024/ntuples/forPaper_24_10_14/variables/Njets2p5/data_postprocessing/root/Data/allData_2022.root'
-  Trees2WS: '/eos/cms/store/group/phys_higgs/cmshgg/niharrin/2024/ntuples/forPaper_24_10_14/variables/Njets2p5/signal_postprocessing/root'
+  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/Njets2p5/allData.root'
+  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/Njets2p5/root'
 
 backgroundScriptCfg:
   # Setup
   cats: 'auto' # auto: automatically inferred from input ws
   catOffset: 0 # add offset to category numbers (useful for categories from different allData.root files)
   ext: 'earlyAnalysis_Njets2p5' # extension to add to output directory
-  # year: '2022' # Use combined when merging all years in category (for plots)
+  # year: '2223' # Use combined when merging all years in category (for plots)
   execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 trees2wsCfg:
   inputTreeDir: 'DiphotonTree' # Name of RooDirectory storing input tree
@@ -71,17 +70,20 @@ trees2wsCfg:
 
   cats: 'auto'
 
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
-signalScriptCfg_2022_preEE:
+signalScriptCfg_2223_preEE:
   # Setup
   procs: 'auto' # if auto: inferred automatically from filenames (requires names to be of form *pythia8_{PROC}.root)
   cats: 'auto' # if auto: inferred automatically from (0) workspace
-  ext: 'earlyAnalysis_Njets2p5_2022preEE' # output directory extension
+  ext: 'earlyAnalysis_Njets2p5_2223preEE' # output directory extension
   analysis: 'earlyAnalysisDiffNjets2p5' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
-  year: '2022preEE' # Use 'combined' if merging all years: not recommended
+  year: '2223preEE' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-
+  replacementThreshold: '50' # 50
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -95,17 +97,20 @@ signalScriptCfg_2022_preEE:
 
 
   # Job submission options
-  execution: 'htcondor' 
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use 
 
-signalScriptCfg_2022_postEE:
+signalScriptCfg_2223_postEE:
   # Setup
   procs: 'auto' # if auto: inferred automatically from filenames (requires names to be of form *pythia8_{PROC}.root)
   cats: 'auto' # if auto: inferred automatically from (0) workspace
-  ext: 'earlyAnalysis_Njets2p5_2022postEE' # output directory extension
+  ext: 'earlyAnalysis_Njets2p5_2223postEE' # output directory extension
   analysis: 'earlyAnalysisDiffNjets2p5' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
-  year: '2022postEE' # Use 'combined' if merging all years: not recommended
+  year: '2223postEE' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-
+  replacementThreshold: '50' # 50
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -119,20 +124,80 @@ signalScriptCfg_2022_postEE:
   beamspotWidthMC: '3.732'
 
   # Job submission options
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
-packaged_2022:
+signalScriptCfg_2223_preBPix:
+  # Setup
+  procs: 'auto' # if auto: inferred automatically from filenames (requires names to be of form *pythia8_{PROC}.root)
+  cats: 'auto' # if auto: inferred automatically from (0) workspace
+  ext: 'earlyAnalysis_Njets2p5_2223preBPix' # output directory extension
+  analysis: 'earlyAnalysisDiffNjets2p5' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
+  year: '2223preBPix' # Use 'combined' if merging all years: not recommended
+  massPoints: '120,125,130' # You can now run with a single mass point if necessary
+  replacementThreshold: '50' # 50
+  # Photon shape systematics  
+  scales: 'ScaleEE,ScaleEB' # separate nuisance per year
+  scalesCorr: 'FNUF,Material' # correlated across years
+  scalesGlobal: 'NonLinearity,Geant4' # affect all processes equally, correlated across years
+  smears: 'Smearing' # separate nuisance per year
+
+  doPlots: True
+
+  beamspotWidthData: '3.2'
+  beamspotWidthMC: '3.732'
+
+
+  # Job submission options
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use 
+
+signalScriptCfg_2223_postBPix:
+  # Setup
+  procs: 'auto' # if auto: inferred automatically from filenames (requires names to be of form *pythia8_{PROC}.root)
+  cats: 'auto' # if auto: inferred automatically from (0) workspace
+  ext: 'earlyAnalysis_Njets2p5_2223postBPix' # output directory extension
+  analysis: 'earlyAnalysisDiffNjets2p5' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
+  year: '2223postBPix' # Use 'combined' if merging all years: not recommended
+  massPoints: '120,125,130' # You can now run with a single mass point if necessary
+  replacementThreshold: '50' # 50
+  # Photon shape systematics  
+  scales: 'ScaleEE,ScaleEB' # separate nuisance per year
+  scalesCorr: 'FNUF,Material' # correlated across years
+  scalesGlobal: 'NonLinearity,Geant4' # affect all processes equally, correlated across years
+  smears: 'Smearing' # separate nuisance per year
+
+  doPlots: True
+
+  
+  beamspotWidthData: '3.5'
+  beamspotWidthMC: '3.732'
+
+  # Job submission options
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
+
+packaged_2223:
   cats: 'auto' # if auto: inferred automatically from (0) workspace
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
   mergeYears: True # Merges the eras
   ext: ''
   execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 datacard_yields:
   cats: 'auto' # if auto: inferred automatically from (0) workspace
   procs: 'auto' # if auto: inferred automatically from (0) workspace
   ext: 'earlyAnalysis' # Extension for saving
-  # inputWSDirMap: '2022preEE,2022postEE'
+  # inputWSDirMap: '2223preEE,2223postEE'
   sigModelWSDir: './Models_Njets2p5/signal' # Input signal model WS directory
   bkgModelWSDir: './Models_Njets2p5/background' # Input background model WS directory
   bkgModelExt: 'multipdf' # Extension used when saving background model
@@ -144,7 +209,10 @@ datacard_yields:
   skipBkg: False # Only add signal processes to datacard
   bkgScaler: 1. # Add overall scale factor for background
   skipCOWCorr: False # Skip centralObjectWeight correction for events in acceptance. Use if no centralObjectWeight in workspace
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 datacard:
   # For pruning processes
@@ -162,7 +230,7 @@ datacard:
 
   # For output:
   saveDataFrame: False # Save final dataframe as pkl file
-  output: 'Datacard_Njets2p5_2022' # Datacard name
+  output: 'Datacard_Njets2p5_2223' # Datacard name
 
 datacard_clean:
   factor: 10000 # Factor beyond which uncertainty is considered incorrect and is removed
@@ -175,21 +243,33 @@ combine_fit:
   asimov_numPoints: 30 # Number of points the Asimov generator should generate for the NLL scan
   unblindedFit_numPoints: 100 
   setParameterRange: "r=0,3"
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 combine_impacts:
   exclude: "" # Nuisances that should be excluded from the impact computation
   not_show_POI: True
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 combine_hesse:
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 combine_mggToys:
   nToys: 1000 # Number of toys = nToys * 10
   loadSnapshot: 'MultiDimFit'
   doBands: True
-  execution: 'htcondor'
+  execution: 'local'
+  batchPartition: "short" # Slurm partition to use for job submission
+  batchMemory: 4000 # Slurm memory to use for job submission
+  batchMaxRuntime: "01:00:00" # Slurm max runtime to use
 
 spectra:
   no_preliminary: True # Flag that determines, if Preliminary label should be printed.

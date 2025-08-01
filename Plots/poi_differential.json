@@ -12,8 +12,8 @@
   "r_YH_0p3_0p6":"r_{|y_{#gamma#gamma}| #in [0.3,0.6[}",
   "r_YH_0p6_0p9":"r_{|y_{#gamma#gamma}| #in [0.6,0.9[}",
   "r_YH_0p9_2p5":"r_{|y_{#gamma#gamma}| #in [0.9,2.5[}",
-  "r_NJ_0p0_1p0":"r_{N_{Jets} #in [0,1[}",
-  "r_NJ_1p0_2p0":"r_{N_{Jets} #in [1,2[}",
-  "r_NJ_2p0_3p0":"r_{N_{Jets} #in [2,3[}",
-  "r_NJ_3p0_100p0":"r_{N_{Jets} #in [3,+inf[}"
+  "r_Njets2p5_0p0_1p0":"r_{N_{Jets} #in [0,1[}",
+  "r_Njets2p5_1p0_2p0":"r_{N_{Jets} #in [1,2[}",
+  "r_Njets2p5_2p0_3p0":"r_{N_{Jets} #in [2,3[}",
+  "r_Njets2p5_3p0_100p0":"r_{N_{Jets} #in [3,+inf[}"
 }
