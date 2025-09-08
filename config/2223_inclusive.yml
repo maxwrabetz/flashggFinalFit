@@ -4,8 +4,8 @@ outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/o
 
 inputFiles:
   # Trees2WS
-  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/inclusive/2025_07_18/data/allData.root'
-  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/inclusive/2025_07_18/signal'
+  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/inclusive/2025_08_04/data/allData.root'
+  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/inclusive/2025_08_04/signal/2223'
 
 backgroundScriptCfg:
   # Setup
@@ -146,8 +146,8 @@ signalScriptCfg_2223_preBPix:
   doPlots: True
 
   # Need to be checked and adjusted
-  beamspotWidthData: '3.2'
-  beamspotWidthMC: '3.732'
+  beamspotWidthData: '3.703'
+  beamspotWidthMC: '3.597'
 
   # Job submission options
   execution: 'htcondor'
@@ -174,8 +174,8 @@ signalScriptCfg_2223_postBPix:
   doPlots: True
 
   # Need to be checked and adjusted
-  beamspotWidthData: '3.5'
-  beamspotWidthMC: '3.732'
+  beamspotWidthData: '3.737'
+  beamspotWidthMC: '3.597'
 
   # Job submission options
   execution: 'htcondor'

@@ -4,9 +4,11 @@ outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/o
 
 inputFiles:
   # Trees2WS
-  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/PTH/allData_2022.root'
-  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/PTH/root/'
+  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/PTH/2022/data/allData_2022.root'
+  Trees2WS:     '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/PTH/2022/signal/'
 
+  # Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/PTH/2022/data/allData_2022.root'
+  # Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/PTH/2022/signal'
 backgroundScriptCfg:
   # Setup
   cats: 'auto' # auto: automatically inferred from input ws
@@ -82,7 +84,7 @@ signalScriptCfg_2022_preEE:
   ext: 'earlyAnalysis_PTH_2022preEE' # output directory extension
   analysis: 'earlyAnalysisDiffPt' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2022preEE' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
@@ -110,7 +112,7 @@ signalScriptCfg_2022_postEE:
   ext: 'earlyAnalysis_PTH_2022postEE' # output directory extension
   analysis: 'earlyAnalysisDiffPt' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2022postEE' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
@@ -188,7 +190,7 @@ datacard_clean:
   verbose: False # Spit out all the cleaning being done
 
 combine_fit:
-  asimov_numPoints: 100 # Number of points the Asimov generator should generate for the NLL scan
+  asimov_numPoints: 30 # Number of points the Asimov generator should generate for the NLL scan
   unblindedFit_numPoints: 100 
   setParameterRange: "r=0,3"
   execution: 'htcondor'

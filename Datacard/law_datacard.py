@@ -59,7 +59,7 @@ class MakeYieldsCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflo
     doSystematics = law.Parameter(default=False, description="Include systematics calculations and add to datacard")
     ignore_warnings = law.Parameter(default=False, description="Skip errors for missing systematics. Instead output warning message")
 
-    batch_flavor = law.Parameter(default="slurm", description="Batch system to use")
+    batch_flavor = law.Parameter(default="htcondor", description="Batch system to use")
     # batch_username = law.Parameter(default="niharrin", description="Username for batch system. Currently only used when batch_flavor is slurm/psi.")
     
     mass = law.Parameter(default='125', description="Input workspace mass")
@@ -185,7 +185,7 @@ class MakeYields(law.Task): #law.Task
     output_dir = law.Parameter(default = '', description="Path to the output directory")
     year = law.Parameter(default='2022', description="Year")
     
-    batch_flavor = law.Parameter(default="slurm", description="Batch system to use")
+    batch_flavor = law.Parameter(default="htcondor", description="Batch system to use")
     
     def requires(self):
         # req() is defined on all tasks and handles the passing of all parameter values that are
@@ -293,7 +293,7 @@ class MakeDatacard(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow): #l
     output_dir = law.Parameter(default = '', description="Path to the output directory")
     year = law.Parameter(default='2022', description="Year")
 
-    batch_flavor = law.Parameter(default="slurm", description="Batch system to use")
+    batch_flavor = law.Parameter(default="htcondor", description="Batch system to use")
     # batch_partition = law.Parameter(default="short", description="Partition to use for the batch job submission")
     # batch_memory = law.Parameter(default=4000, description="Memory to use for the batch job submission")
     # batch_max_runtime = law.Parameter(default="01:00:00", description="Max runtime to use for the batch job submission")

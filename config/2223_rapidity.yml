@@ -4,8 +4,8 @@ outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/o
 
 inputFiles:
   # Trees2WS
-  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/rapidity/allData.root'
-  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/rapidity/root/'
+  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/rapidity/2223/data/allData.root'
+  Trees2WS:     '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04/rapidity/2223/signal/'
 
 backgroundScriptCfg:
   # Setup
@@ -83,7 +83,7 @@ signalScriptCfg_2223_preEE:
   analysis: 'earlyAnalysisDiffYH' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2223preEE' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -110,7 +110,7 @@ signalScriptCfg_2223_postEE:
   analysis: 'earlyAnalysisDiffYH' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2223postEE' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -137,7 +137,7 @@ signalScriptCfg_2223_preBPix:
   analysis: 'earlyAnalysisDiffYH' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2223preBPix' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -146,8 +146,8 @@ signalScriptCfg_2223_preBPix:
 
   doPlots: True
 
-  beamspotWidthData: '3.2'
-  beamspotWidthMC: '3.732'
+  beamspotWidthData: '3.703'
+  beamspotWidthMC: '3.597'
 
 
   # Job submission options
@@ -164,7 +164,7 @@ signalScriptCfg_2223_postBPix:
   analysis: 'earlyAnalysisDiffYH' # To specify replacement dataset and XS*BR mapping (defined in ./tools/replacementMap.py and ./tools/XSBRMap.py respectively)
   year: '2223postBPix' # Use 'combined' if merging all years: not recommended
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   # Photon shape systematics  
   scales: 'ScaleEE,ScaleEB' # separate nuisance per year
   scalesCorr: 'FNUF,Material' # correlated across years
@@ -174,8 +174,8 @@ signalScriptCfg_2223_postBPix:
   doPlots: True
 
   
-  beamspotWidthData: '3.5'
-  beamspotWidthMC: '3.732'
+  beamspotWidthData: '3.737'
+  beamspotWidthMC: '3.597'
 
   # Job submission options
   execution: 'htcondor'
@@ -241,7 +241,7 @@ datacard_clean:
   verbose: False # Spit out all the cleaning being done
 
 combine_fit:
-  asimov_numPoints: 100 # Number of points the Asimov generator should generate for the NLL scan
+  asimov_numPoints: 30 # Number of points the Asimov generator should generate for the NLL scan
   unblindedFit_numPoints: 100 
   setParameterRange: "r=0,3"
   execution: 'htcondor'

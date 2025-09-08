@@ -56,7 +56,8 @@ def get_options():
   parser.add_option("--POI", dest="POI", default='', help="POI to be considered.")
   return parser.parse_args()
 (opt,args) = get_options()
-
+opt.unblind =  False
+opt.blindingRegion = "116,134"
 # Open WS
 if opt.inputWSFile is not None:
   print(" --> Opening workspace: %s"%opt.inputWSFile)
