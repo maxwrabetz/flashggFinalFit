@@ -5691,7 +5691,7 @@ class MggDistribution(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow):
                 "--inputWSFile", datacard_path,
                 "--cats", f"{','.join(reco_cats_with_bmw)}",
                 "--doZeroes",
-                "--blindingRegion", "125,125",
+                "--blindingRegion", "117,133",
                 "--translateCats", f"{os.path.join(os.environ['ANALYSIS_PATH'], 'Plots', 'cats.json')}",
                 "--doSumCategories",
                 "--doCatWeights",

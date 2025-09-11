@@ -73,8 +73,8 @@ install_dir
 .law
 law/output
 law/remote
-
+law/*.sh
 remote
 htcondor
 
-output
+output*
