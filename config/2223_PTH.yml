@@ -83,7 +83,7 @@ signalScriptCfg_2223_preEE:
   analysisRM: 'Run3FidXSAnalysisPTH' # To specify replacement dataset (defined in ./commonTools/replacementMap.py)
   analysisXSBR: 'Run3FidXSAnalysis' # To specify XSBR dataset (defined in ./commonTools/XSBRMap.py)
   year: '2223preEE' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
@@ -112,7 +112,7 @@ signalScriptCfg_2223_postEE:
   analysisRM: 'Run3FidXSAnalysisPTH' # To specify replacement dataset (defined in ./commonTools/replacementMap.py)
   analysisXSBR: 'Run3FidXSAnalysis' # To specify XSBR dataset (defined in ./commonTools/XSBRMap.py)
   year: '2223postEE' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
@@ -140,7 +140,7 @@ signalScriptCfg_2223_preBPix:
   analysisRM: 'Run3FidXSAnalysisPTH' # To specify replacement dataset (defined in ./commonTools/replacementMap.py)
   analysisXSBR: 'Run3FidXSAnalysis' # To specify XSBR dataset (defined in ./commonTools/XSBRMap.py)
   year: '2223preBPix' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
@@ -169,7 +169,7 @@ signalScriptCfg_2223_postBPix:
   analysisRM: 'Run3FidXSAnalysisPTH' # To specify replacement dataset (defined in ./commonTools/replacementMap.py)
   analysisXSBR: 'Run3FidXSAnalysis' # To specify XSBR dataset (defined in ./commonTools/XSBRMap.py)
   year: '2223postBPix' # Use 'combined' if merging all years: not recommended
-  replacementThreshold: '50'
+  replacementThreshold: '25'
   massPoints: '120,125,130' # You can now run with a single mass point if necessary
 
   # Photon shape systematics  
