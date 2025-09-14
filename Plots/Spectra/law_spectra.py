@@ -167,9 +167,9 @@ class CreateDiffSpectra(law.Task):#(law.Task): #(Task, HTCondorWorkflow, law.Loc
                 raise RuntimeError(f'Attempting to build {param} scan from TGraph with zero or one point (see above)')
             
             bestfit = None
-            for i in range(graph.GetN()):
-                if graph.GetY()[i] == 0.:
-                    bestfit = graph.GetX()[i]
+            if graph.GetN() > 0:
+                points = [(graph.GetX()[i], graph.GetY()[i]) for i in range(graph.GetN())]
+                bestfit, _ = min(points, key=lambda p: p[1])
             
             spline = ROOT.TSpline3("spline3", graph)
             

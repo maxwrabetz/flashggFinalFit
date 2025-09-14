@@ -603,6 +603,12 @@ class AsimovFitCategoryFirstStep(Task, SlurmWorkflow, HTCondorWorkflow, law.Loca
             execute_command([f'mkdir -p {output_dir}/Combine/{fitFolderName}/asimov'], shell=True)
             os.chdir(os.path.join(output_dir, 'Combine', fitFolderName, 'asimov'))
 
+        if self.year == "2223":
+            saveIndex = ",".join([f"pdfindex_{bmw}_2022_13TeV" for bmw in BMW] + [f"pdfindex_{bmw}_2023_13TeV" for bmw in BMW])
+        else:
+            saveIndex = ",".join([f"pdfindex_{bmw}_{self.year}_13TeV" for bmw in BMW])
+
+
         if self.variable == '':
             arguments = [
                 "combine",
@@ -621,7 +627,7 @@ class AsimovFitCategoryFirstStep(Task, SlurmWorkflow, HTCondorWorkflow, law.Loca
                 # "--X-rtd", "MINIMIZER_skipDiscreteIterations", # According to Mauro: Try without profiling
                 "-t", "-1",
                 "--saveFitResult", #pdfindex_cat0_{self.year}_13TeV,pdfindex_cat1_2022_13TeV,pdfindex_cat2_2022_13TeV}
-                "--saveSpecifiedIndex", f"""{",".join([f"pdfindex_{bmw}_{self.year}_13TeV" for bmw in BMW])}""",
+                "--saveSpecifiedIndex", saveIndex,
                 "--floatOtherPOIs", "1"
             ]
             command = arguments
@@ -658,7 +664,7 @@ class AsimovFitCategoryFirstStep(Task, SlurmWorkflow, HTCondorWorkflow, law.Loca
             arguments.append("--setParameters")
             arguments.append(f"""{",".join(combineVariableDict[f'{self.year}'][f'{self.variable}']['paramStr'])}""")
             command = arguments
-            # print(command)
+
             try:
                 result = subprocess.run(command, check=True, text=True, capture_output=True)
                 print("Script output:", result.stdout)
@@ -1484,6 +1490,10 @@ class CreateAsimovFit(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow):
                     "--translate", os.path.join(os.environ["ANALYSIS_PATH"], 'Combine', 'pois.json')
                 ]
             command = arguments
+
+            with open("/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/law/combine_command.txt", "w") as f:
+                f.write(" ".join(command) + "\n")
+            # BOBR
             print(command)
             try:
                 result = subprocess.run(command, check=True, text=True, capture_output=True)
@@ -5681,7 +5691,7 @@ class MggDistribution(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow):
                 datacard_path = os.path.join(output_dir, 'Combine', f'Datacard_{self.variable}_{self.year}.root')
                 
             if self.variable == '':
-                reco_cats_with_bmw = ['cat0', 'cat1', 'cat2']
+                reco_cats_with_bmw = ['Y22_cat0', 'Y22_cat1', 'Y22_cat2', 'Y23_cat0', 'Y23_cat1', 'Y23_cat2']
             else:
                 reco_cats_with_bmw = [element for element in combineVariableDict[f'{self.year}'][self.variable]['catsStrWithBMW'] if "_".join(cat.split("_")[2:]) in element]
                 
