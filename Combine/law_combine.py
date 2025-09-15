@@ -664,7 +664,8 @@ class AsimovFitCategoryFirstStep(Task, SlurmWorkflow, HTCondorWorkflow, law.Loca
             arguments.append("--setParameters")
             arguments.append(f"""{",".join(combineVariableDict[f'{self.year}'][f'{self.variable}']['paramStr'])}""")
             command = arguments
-
+            with open("/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/law/command_firststep.txt", "a") as f:
+                f.write(" ".join(command) + "\n")    
             try:
                 result = subprocess.run(command, check=True, text=True, capture_output=True)
                 print("Script output:", result.stdout)
