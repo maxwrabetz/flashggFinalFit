@@ -688,6 +688,10 @@ class SignalFitCategoryProcess(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalW
             arguments += ["%s"%self.output_dir]
         command = arguments
         print(command)
+
+        with open("/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/signal_commands.txt", "a") as f:
+            f.write(" ".join(command) + "\n") 
+        
         try:
             result = subprocess.run(command, check=True, text=True, capture_output=True)
             print("Script output:", result.stdout)

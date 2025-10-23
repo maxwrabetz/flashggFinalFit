@@ -659,6 +659,10 @@ class AsimovFitCategoryFirstStep(Task, SlurmWorkflow, HTCondorWorkflow, law.Loca
             arguments.append(f"""{",".join(combineVariableDict[f'{self.year}'][f'{self.variable}']['paramStr'])}""")
             command = arguments
             # print(command)
+            
+            # with open("/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/asimov_commands.txt", "a") as f:
+            #     f.write(" ".join(command) + "\n") 
+
             try:
                 result = subprocess.run(command, check=True, text=True, capture_output=True)
                 print("Script output:", result.stdout)
@@ -5691,7 +5695,7 @@ class MggDistribution(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow):
                 "--inputWSFile", datacard_path,
                 "--cats", f"{','.join(reco_cats_with_bmw)}",
                 "--doZeroes",
-                "--blindingRegion", "125,125",
+                "--blindingRegion", "117,133",
                 "--translateCats", f"{os.path.join(os.environ['ANALYSIS_PATH'], 'Plots', 'cats.json')}",
                 "--doSumCategories",
                 "--doCatWeights",

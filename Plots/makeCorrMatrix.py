@@ -176,9 +176,9 @@ for mode,pois in modes.items():
         label_size = 0.05
       elif mode.count("rapidity"):
         label_size = 0.06
-      elif mode.count("Njets2p5"):
+      elif mode.count("NJ"):
         label_size = 0.06
-      elif mode.count("ptJ0"):
+      elif mode.count("PTJ0"):
         label_size = 0.06
       else:
         label_size = 0.03
@@ -206,7 +206,7 @@ for mode,pois in modes.items():
     if opt.noPreliminary:
       latex.DrawLatex(1.00-canv.GetRightMargin()-x_modifier_cms,1.00-canv.GetTopMargin()+0.025,'#bf{CMS} #it{Simulation}')
     else:
-      latex.DrawLatex(1.00-canv.GetRightMargin()-x_modifier_cms,1.00-canv.GetTopMargin()+0.025,'#bf{CMS} #it{Simulation Preliminary}')
+      latex.DrawLatex(1.25-canv.GetRightMargin()-x_modifier_cms,1.00-canv.GetTopMargin()+0.025,'#bf{CMS} #it{Simulation Preliminary}')
   latex.SetTextSize(0.04)
   latex.DrawLatex(1.00-canv.GetRightMargin()-0.,1.00-canv.GetTopMargin()+0.025,'%0.1f fb^{-1} (13.6 TeV)'%lumiMap[f"{opt.year}"])
   latex.SetTextSize(0.04)

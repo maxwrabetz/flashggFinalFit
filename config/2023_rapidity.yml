@@ -1,11 +1,11 @@
 # Config file: options for signal fitting
 
-outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/output_2023_rapidity/'
+outputFolder: '/net/data_cms3a-1/wrabetz/CMSSW_14_1_0_pre4/src/flashggFinalFit/output_2023_rapidity_FNUF/'
 
 inputFiles:
   # Trees2WS
-  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/rapidity/allData_2023.root'
-  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_07_18/rapidity/root/'
+  Trees2WSData: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04_fixedFNUF/rapidity/2023/data/allData_2023.root'
+  Trees2WS: '/net/data_cms3a-2/nobackup/group_JE_CMS/Hgg_PartialRun3/stat_analysis/differential/2025_08_04_fixedFNUF/rapidity/2023/signal/'
 
 backgroundScriptCfg:
   # Setup
@@ -189,7 +189,7 @@ datacard_clean:
   verbose: False # Spit out all the cleaning being done
 
 combine_fit:
-  asimov_numPoints: 100 # Number of points the Asimov generator should generate for the NLL scan
+  asimov_numPoints: 30 # Number of points the Asimov generator should generate for the NLL scan
   unblindedFit_numPoints: 100 
   setParameterRange: "r=0,3"
   execution: 'htcondor'

@@ -77,6 +77,16 @@ CMS_lumi(TPad* pad, int iPeriod, int iPosX , TString extraExtraText)
     lumiText += lumi_13p6TeV;
     lumiText += " (13.6 TeV)";
   }
+  else if (iPeriod == 2023)
+  {
+    lumiText += lumi_13p6TeV;
+    lumiText += " (13.6 TeV)";
+  }
+  else if (iPeriod == 2223)
+  {
+    lumiText += lumi_13p6TeV;
+    lumiText += " (13.6 TeV)";
+  }
   else if ( iPeriod==0 )
   {
     lumiText += lumi_sqrtS;

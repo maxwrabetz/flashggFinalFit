@@ -70,7 +70,7 @@ plt.ylabel(r'$-2 \Delta \ln L$')
 plt.xlim(62.5, 93.5)
 plt.ylim(0, 2.25)
 plt.legend(loc='upper right')
-hep.cms.label('Preliminary', data=True, lumi=61.9, com=13.6)
+hep.cms.label('Preliminary', data=True, lumi=27.8, com=13.6) #BOBER_LUMI
 plt.tight_layout()
 
 # Save the plot
