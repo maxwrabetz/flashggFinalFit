@@ -25,13 +25,20 @@ law.contrib.load("slurm")
 
 class Task(law.Task):
     """
-    Base task that we use to force a version parameter on all inheriting tasks, and that provides
+    Base task that provides a version parameter to all inheriting tasks, and that provides
     some convenience methods to create local file and directory targets at the default data path.
+    The analysis outputs are written to the outputFolder of the config, the version only selects
+    the directory for the batch submission metadata and job logs (see local_path).
     """
 
-    version = luigi.Parameter()
+    version = luigi.Parameter(default="v1", description="Version of the batch submission metadata directory; default: v1")
 
     def store_parts(self):
+        # Separate the submission metadata per year and variable, so that e.g. 2023 NJ and
+        # 2022 PTH runs with the same version do not share (and overwrite) their job files
+        analysis = "_".join(str(getattr(self, p)) for p in ("year", "variable") if getattr(self, p, ""))
+        if analysis:
+            return (self.__class__.__name__, self.version, analysis)
         return (self.__class__.__name__, self.version)
 
     def local_path(self, *path):
