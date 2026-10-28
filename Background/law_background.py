@@ -1,5 +1,6 @@
 import law
 import os
+import sys
 import subprocess
 import glob
 import yaml
@@ -33,6 +34,25 @@ def execute_command(command, return_output=False, shell=False):
     except subprocess.CalledProcessError as e:
         print("Error executing script:", e.stderr)
         raise
+
+def run_ftest(input_path, cat, cat_offset, output_folder, ext, year):
+    # Background fTest for a single category (python port of the old compiled bin/fTest, no make needed)
+    # Runs in its own process, so every category starts from the same random seeds as before
+    outdir = os.path.join(output_folder, f"outdir_{ext}")
+    safe_mkdir(outdir)
+    command = [
+        sys.executable, os.path.join(os.environ["ANALYSIS_PATH"], "Background/scripts/fTest.py"),
+        "-i", input_path,
+        "--saveMultiPdf", os.path.join(outdir, f"CMS-HGG_multipdf_{cat}.root"),
+        "-D", os.path.join(outdir, "bkgfTest-Data"),
+        "-f", cat,
+        "--isData", "1",
+        "--year", f"{year}",
+        "--intLumi", f"{lumiMap[year]}",
+        "--catOffset", f"{cat_offset}",
+        "-d", os.path.join(os.environ["ANALYSIS_PATH"], "Background/dat/fTest.dat")
+    ]
+    execute_command(command)
 
 class BackgroundCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflow):#(law.Task): #(Task, HTCondorWorkflow, law.LocalWorkflow):
     input_path = law.Parameter(description="Path to the alldata input ROOT file")
@@ -119,37 +139,7 @@ class BackgroundCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflo
         if temp_output_dir[-1] != "/":
             temp_output_dir += "/"
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Background/runBackgroundScripts.sh")
-        arguments = [
-            "-i", input_path,
-            "-p", "none",
-            "-f", cat,
-            "--outputFolder", f"{temp_output_dir}",
-            "--ext", f'{self.ext}',
-            "--catOffset", cat_offset,
-            "--intLumi", f"{lumiMap[self.year]}",
-            "--year", f"{self.year}",
-            "--batch", "local",
-            "--queue", "microcentury",
-            "--sigFile", "none",
-            "--isData",
-            "--fTest"
-        ]
-        command = [script_path] + arguments
-        # print("Output:", command)
-        
-        # Move to background folder
-        original_dir = os.getcwd()
-        os.chdir(os.path.join(os.environ["ANALYSIS_PATH"], "Background"))
-        try:
-            result = subprocess.run(command, check=True, text=True, capture_output=True)
-            print("Script output:", result.stdout)
-            print("Script executed successfully.")
-        except subprocess.CalledProcessError as e:
-            print("Error executing script:", e.stderr)
-            raise
-        finally:
-            os.chdir(original_dir)
+        run_ftest(input_path, cat, cat_offset, temp_output_dir, self.ext, self.year)
 
         if self.batch_flavor == "slurm/psi":
             bkg_folder = f"outdir_{self.ext}"
@@ -328,37 +318,7 @@ class Background(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflow):#(law
         if temp_output_dir[-1] != "/":
             temp_output_dir += "/"
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Background/runBackgroundScripts.sh")
-        arguments = [
-            "-i", input_path,
-            "-p", "none",
-            "-f", cat,
-            "--outputFolder", f"{temp_output_dir}",
-            "--ext", f'{config["ext"]}',
-            "--catOffset", cat_offset,
-            "--intLumi", f"{lumiMap[self.year]}",
-            "--year", f"{self.year}",
-            "--batch", "local",
-            "--queue", "microcentury",
-            "--sigFile", "none",
-            "--isData",
-            "--fTest"
-        ]
-        command = [script_path] + arguments
-        # print("Output:", command)
-        
-        # Move to background folder
-        original_dir = os.getcwd()
-        os.chdir(os.path.join(os.environ["ANALYSIS_PATH"], "Background"))
-        try:
-            result = subprocess.run(command, check=True, text=True, capture_output=True)
-            print("Script output:", result.stdout)
-            print("Script executed successfully.")
-        except subprocess.CalledProcessError as e:
-            print("Error executing script:", e.stderr)
-            raise
-        finally:
-            os.chdir(original_dir)
+        run_ftest(input_path, cat, cat_offset, temp_output_dir, config["ext"], self.year)
 
         if self.batch_flavor == "slurm/psi":
             bkg_folder = f"outdir_{config['ext']}"

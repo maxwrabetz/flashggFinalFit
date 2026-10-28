@@ -1,6 +1,6 @@
 # Background Modelling
 
-This is where the background model is determined. This is the only package yet to be pythonised for the new Final Fits. We have introduced a new mode for running the fTest `fTestParallel` which creates a separate job per analysis category. These jobs can then be submitted in parallel, greatly speeding up the process!
+This is where the background model is determined. The background fTest has been pythonised (`scripts/fTest.py`, a direct port of `test/fTest.cpp` giving identical output) and no longer needs to be compiled. We have introduced a new mode for running the fTest `fTestParallel` which creates a separate job per analysis category. These jobs can then be submitted in parallel, greatly speeding up the process!
 
 The S+B plotting functionalities in this package have for now been depleted. You can produce the traditional blinded signal + bkg model plots using the `../Plots/makeSplusBModelPlot.py` script (see the `Plots` package for mode details). The `fTestParallel` will by default still produce the standard multipdf style plots.
 
@@ -8,7 +8,12 @@ The new `fTestParallel` method for running the background scripts is only config
 
 ## Setup
 
-The background modelling package still needs to be built with it's own makefiles. Please note that there will be verbose warnings from BOOST etc, which can be ignored. So long as the `make` commands finish without error, then the compilation happened fine.:
+The fTest (used by the `law` `Background` task and by `runBackgroundScripts.sh`) is pure python and only needs `cmsenv` with combine available:
+```
+python3 scripts/fTest.py -i allData.root --saveMultiPdf outdir/CMS-HGG_multipdf_<cat>.root -D outdir/bkgfTest-Data -f <cat> --isData 1 --year 2023 --catOffset 0
+```
+
+The remaining legacy C++ tools (`BiasStudy`, `makeBkgPlots`, `pseudodataMaker`, ...) still need to be built with their own makefiles. Please note that there will be verbose warnings from BOOST etc, which can be ignored. So long as the `make` commands finish without error, then the compilation happened fine.:
 
 ```
 cd ${CMSSW_BASE}/src/flashggFinalFit/Background

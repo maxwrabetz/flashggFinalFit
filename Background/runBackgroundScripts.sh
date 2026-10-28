@@ -174,11 +174,11 @@ fi
 
 
 if [ -z "$OUTFOLDER" ]; then
-  echo " ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET"
-  ./bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET
+  echo " python3 ./scripts/fTest.py -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --intLumi $INTLUMI --catOffset $CATOFFSET"
+  python3 ./scripts/fTest.py -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --intLumi $INTLUMI --catOffset $CATOFFSET
 else
-  echo " ${ANALYSIS_PATH}/Background/bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET"
-  $ANALYSIS_PATH/Background/bin/fTest -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --catOffset $CATOFFSET
+  echo " python3 ${ANALYSIS_PATH}/Background/scripts/fTest.py -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --intLumi $INTLUMI --catOffset $CATOFFSET"
+  python3 $ANALYSIS_PATH/Background/scripts/fTest.py -i $FILE --saveMultiPdf $OUTDIR/CMS-HGG_multipdf_$EXT_$CATS.root  -D $OUTDIR/bkgfTest$DATAEXT -f $CATS $OPT --year $YEAR --intLumi $INTLUMI --catOffset $CATOFFSET
 fi
 
 
