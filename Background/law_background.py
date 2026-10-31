@@ -36,21 +36,21 @@ def execute_command(command, return_output=False, shell=False):
         raise
 
 def run_ftest(input_path, cat, cat_offset, output_folder, ext, year):
-    # Background fTest for a single category (python port of the old compiled bin/fTest, no make needed)
+    # Background fTest for a single category (finalfits.background)
     # Runs in its own process, so every category starts from the same random seeds as before
     outdir = os.path.join(output_folder, f"outdir_{ext}")
-    safe_mkdir(outdir)
+    plot_dir = os.path.join(outdir, "bkgfTest-Data")
+    safe_mkdir(plot_dir)
     command = [
-        sys.executable, os.path.join(os.environ["ANALYSIS_PATH"], "Background/scripts/fTest.py"),
-        "-i", input_path,
-        "--saveMultiPdf", os.path.join(outdir, f"CMS-HGG_multipdf_{cat}.root"),
-        "-D", os.path.join(outdir, "bkgfTest-Data"),
-        "-f", cat,
-        "--isData", "1",
+        sys.executable, os.path.join(os.environ["ANALYSIS_PATH"], "scripts/background.py"),
+        "--roofit-verbose", "-1",
+        input_path, plot_dir,
+        "--categories", cat,
         "--year", f"{year}",
-        "--intLumi", f"{lumiMap[year]}",
-        "--catOffset", f"{cat_offset}",
-        "-d", os.path.join(os.environ["ANALYSIS_PATH"], "Background/dat/fTest.dat")
+        "--int-lumi", f"{lumiMap[year]}",
+        "--cat-offset", f"{cat_offset}",
+        "--multipdf", os.path.join(outdir, f"CMS-HGG_multipdf_{cat}.root"),
+        "--dat-file", os.path.join(plot_dir, f"fTest_{cat}.dat"),
     ]
     execute_command(command)
 

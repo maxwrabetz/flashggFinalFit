@@ -125,16 +125,16 @@ class FTestCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflow): #
             output_dir = self.output_dir
             # os.chdir(os.path.join(self.output_dir, 'Combine', fitFolderName, 'impact'))
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Signal/scripts/fTest.py")
+        # Signal fTest of finalfits (finalfits/signal_ftest.py)
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/signal_ftest.py")
         arguments = [
             "python3",
             script_path,
+            f"{self.input_path}",
+            f"{output_dir}/outdir_{self.ext}/fTest",
             "--cat", cat,
             "--procs", self.procs,
-            "--ext", self.ext,
-            "--outputDir", f"{output_dir}",
-            "--inputWSDir", f"{self.input_path}",
-            "--doPlots"
+            "--plots", "RV,RVResults,WV,WVResults",
         ]
         command = arguments
         print(command)
@@ -427,24 +427,19 @@ class CalcPhotonSystCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWor
             output_dir = self.output_dir
             # os.chdir(os.path.join(self.output_dir, 'Combine', fitFolderName, 'impact'))
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Signal/scripts/calcPhotonSyst.py")
+        # Photon systematics of finalfits (finalfits/photon_systematics.py); scalesGlobal are not used here
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/photon_systematics.py")
         arguments = [
             "python3",
             script_path,
+            f"{self.input_path}",
+            f"{output_dir}/outdir_{self.ext}/calcPhotonSyst/pkl/{cat}.pkl",
             "--cat", cat,
             "--procs", self.procs,
-            "--ext", self.ext,
-            "--outputDir", f"{output_dir}",
-            "--inputWSDir", f"{self.input_path}",
             "--scales", f"{self.scales}",
-            "--smears", f"{self.smears}"
+            "--scales-corr", f"{self.scalesCorr}",
+            "--smears", f"{self.smears}",
         ]
-        if self.scalesCorr != "":
-            arguments.append("--scalesCorr")
-            arguments.append("%s"%self.scalesCorr)
-        if self.scalesCorr != "":
-            arguments.append("--scalesGlobal")
-            arguments.append("%s"%self.scalesGlobal)
         command = arguments
         # print(command)
         try:
@@ -714,43 +709,39 @@ class SignalFitCategoryProcess(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalW
 
         execute_command([f'mkdir -p {output_dir}/outdir_{self.ext}/signalFit/logs'], shell=True)
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Signal/scripts/signalFit.py")
+        # Signal fit of finalfits (finalfits/signal_fit.py)
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/signal_fit.py")
         arguments = [
             "python3",
             script_path,
-            "--cat", cat,
-            "--proc", proc,
+            f"{self.input_path}",
+            f"{output_dir}",
             "--ext", self.ext,
-            "--outputDir", f"{output_dir}",
-            "--inputWSDir", f"{self.input_path}",
+            "--proc", proc,
+            "--cat", cat,
             "--year", f"{self.year}",
             "--scales", f"{self.scales}",
+            "--scales-corr", f"{self.scalesCorr}",
+            "--scales-global", f"{self.scalesGlobal}",
             "--smears", f"{self.smears}",
-            "--analysisXSBR", f"{self.analysisXSBR}",
-            "--analysisRM", f"{self.analysisRM}",
-            "--massPoints", f"{self.massPoints}",
-            "--replacementThreshold",f"{self.replacementThreshold}",
-            "--beamspotWidthData", f"{self.beamspotWidthData}",
-            "--beamspotWidthMC", f"{self.beamspotWidthMC}"
+            "--analysis-xsbr", f"{self.analysisXSBR}",
+            "--analysis-rm", f"{self.analysisRM}",
+            "--mass-points", f"{self.massPoints}",
+            "--replacement-threshold", f"{self.replacementThreshold}",
+            "--beamspot-width-data", f"{self.beamspotWidthData}",
+            "--beamspot-width-mc", f"{self.beamspotWidthMC}",
         ]
 
         replacement_report_path = os.path.join(
             output_dir,
             f"outdir_{self.ext}/signalFit/logs/replacements_{proc}_{self.year}_{cat}.txt"
         )
-        arguments += ["--replacementReportFile", replacement_report_path]
+        arguments += ["--replacement-report", replacement_report_path]
 
         if convert_boolean_string(self.doPlots):
-            arguments += ["--doPlots"]
-        if self.scalesCorr != "":
-            arguments += ["--scalesCorr"]
-            arguments += ["%s"%self.scalesCorr]
-        if self.scalesGlobal != "":
-            arguments += ["--scalesGlobal"]
-            arguments += ["%s"%self.scalesGlobal]
+            arguments += ["--plots"]
         if (self.batch_flavor == "slurm/psi"):
-            arguments += ["--ingredientsDir"]
-            arguments += ["%s"%self.output_dir]
+            arguments += ["--ingredients-dir", f"{self.output_dir}"]
 
         command_log_path = os.path.join(
             output_dir,
@@ -1093,17 +1084,16 @@ class SignalPackagingCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWo
                 print(slurm_copy_command)
                 execute_command(slurm_copy_command)
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Signal/scripts/packageSignal.py")
+        # Packaging of finalfits (finalfits/signal_package.py); the eras are always merged
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/signal_package.py")
         arguments = [
             "python3",
             script_path,
+            f"{output_dir}",
             "--cat", cat,
-            "--outputExt", self.outputExt,
             "--exts", self.exts,
-            "--outputDir", f"{output_dir}",
-            "--year", f"{self.year}",
-            "--massPoints", f"{self.massPoints}",
-            "--mergeYears", f"{self.mergeYears}",
+            "--output-ext", self.outputExt,
+            "--mass-points", f"{self.massPoints}",
         ]
         command = arguments
         # print(command)

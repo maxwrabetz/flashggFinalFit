@@ -55,6 +55,11 @@ To produce the fTest plots then add `--doPlots` to the `--modeOpts` string.
 
 For other options when running `fTest`, see `./scripts/fTest`
 
+**Rewrite:** the law task `FTest` now runs `scripts/signal_ftest.py` of the `finalfits` package (`finalfits/signal_ftest.py`, signal model and chi2 fit in `finalfits/signal_model.py`). It gives the same fit results as `scripts/fTest.py` with `tools/simultaneousFit.py` (identical parameters and chi2), several times faster, since the data bins and their Poisson errors are prepared once instead of in every chi2 evaluation:
+```
+./scripts/signal_ftest.py <ws_signal dir> outdir_<ext>/fTest -c <cat> -p <proc1>,<proc2> --plots RV,RVResults,WV,WVResults
+```
+
 ## Photon systematics
 
 For calculating the effect of the photon systematics on the mean, width and rate of the signal spectrum.

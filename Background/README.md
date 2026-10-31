@@ -1,6 +1,11 @@
 # Background Modelling
 
-This is where the background model is determined. The background fTest has been pythonised (`scripts/fTest.py`, a direct port of `test/fTest.cpp` giving identical output) and no longer needs to be compiled. We have introduced a new mode for running the fTest `fTestParallel` which creates a separate job per analysis category. These jobs can then be submitted in parallel, greatly speeding up the process!
+This is where the background model is determined. The fTest is now part of the `finalfits` package (`finalfits/background.py`, the function families in `finalfits/pdfs.py`, the plots in `finalfits/background_plots.py`) and is run per category by the law task `Background`, or by hand with
+```
+./scripts/background.py allData.root outdir/bkgfTest-Data -c <cat> --year 2023 --int-lumi 27.2 --cat-offset 0 \
+    --multipdf outdir/CMS-HGG_multipdf_<cat>.root --dat-file outdir/bkgfTest-Data/fTest_<cat>.dat
+```
+It gives identical output to `scripts/fTest.py` (the direct port of `test/fTest.cpp`, kept for `runBackgroundScripts.sh` and comparisons). The law task now writes the chosen orders per category to `bkgfTest-Data/fTest_<cat>.dat` instead of all categories overwriting `dat/fTest.dat`. We have introduced a new mode for running the fTest `fTestParallel` which creates a separate job per analysis category. These jobs can then be submitted in parallel, greatly speeding up the process!
 
 The S+B plotting functionalities in this package have for now been depleted. You can produce the traditional blinded signal + bkg model plots using the `../Plots/makeSplusBModelPlot.py` script (see the `Plots` package for mode details). The `fTestParallel` will by default still produce the standard multipdf style plots.
 

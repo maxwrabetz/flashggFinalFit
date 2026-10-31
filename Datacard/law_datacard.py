@@ -131,32 +131,31 @@ class MakeYieldsCategory(Task, HTCondorWorkflow, SlurmWorkflow, law.LocalWorkflo
         ext = self.ext
         bkgModelWSDir = self.bkgModelWSDir
                 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Datacard/makeYields.py")
+        # Yields of finalfits (finalfits/datacard_yields.py)
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/datacard.py")
+        ext_str = f"_{ext}" if ext != '' else ''
         arguments = [
             "python3",
             script_path,
-            "--inputWSDirMap", f"{self.inputWSDirMap}",
+            "yields",
+            os.path.join(temp_output_dir, "Datacards", f"yields{ext_str}", f"{cat}.pkl"),
+            "--input-ws-dirs", f"{self.inputWSDirMap}",
             "--cat", cat,
-            "--outputDir", f"{temp_output_dir}",
-            "--ext", ext,
             "--procs", f"{self.procs}",
             "--mass", f"{self.mass}",
-            "--bkgScaler", f"{self.bkgScaler}",
-            "--sigModelWSDir", f"{self.sigModelWSDir}",
-            "--sigModelExt", f"{self.sigModelExt}",
-            "--bkgModelWSDir", f"{bkgModelWSDir}",
-            "--bkgModelExt", f"{self.bkgModelExt}"
+            "--bkg-scaler", f"{self.bkgScaler}",
+            "--sig-model-dir", f"{self.sigModelWSDir}",
+            "--sig-model-ext", f"{self.sigModelExt}",
+            "--bkg-model-dir", f"{bkgModelWSDir}",
+            "--bkg-model-ext", f"{self.bkgModelExt}",
+            "--variable", f"{self.variable}",
             ]
-        if self.variable != '':
-            arguments.append("--variable")
-            arguments.append(f"{self.variable}")
-        
-        if convert_boolean_string(self.doSystematics): arguments.append("--doSystematics")
-        if convert_boolean_string(self.mergeYears): arguments.append("--mergeYears")
-        if convert_boolean_string(self.skipZeroes): arguments.append("--skipZeroes")
+        if convert_boolean_string(self.doSystematics): arguments.append("--do-systematics")
+        if convert_boolean_string(self.mergeYears): arguments.append("--merge-years")
+        if convert_boolean_string(self.skipZeroes): arguments.append("--skip-zeroes")
         if convert_boolean_string(self.ignore_warnings): arguments.append("--ignore-warnings")
-        if convert_boolean_string(self.skipBkg): arguments.append("--skipBkg")
-        if convert_boolean_string(self.skipCOWCorr): arguments.append("--skipCOWCorr")
+        if convert_boolean_string(self.skipBkg): arguments.append("--skip-bkg")
+        if convert_boolean_string(self.skipCOWCorr): arguments.append("--skip-cow-corr")
 
         command = arguments
         # print("Output:", command)
@@ -448,31 +447,30 @@ class MakeDatacard(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow): #l
                 else:
                     years += currentYearEra
 
-        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Datacard/makeDatacard.py")
+        # Datacard of finalfits (finalfits/datacard.py)
+        if convert_boolean_string(datacard_config["doSTXSMerging"]) or convert_boolean_string(datacard_config["doSTXSScaleCorrelationScheme"]):
+            raise NotImplementedError("doSTXSMerging and doSTXSScaleCorrelationScheme are not supported by finalfits.datacard")
+        ext_str = f"_{ext}" if ext != '' else ''
+        script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/datacard.py")
         arguments = [
             "python3",
             script_path,
-            "--inputFiles", f"{pklInputFiles}",
-            "--outputDir", f"{temp_output_dir}",
-            "--ext", ext,
+            "make",
+            os.path.join(pklInputFiles, f"yields{ext_str}"),
+            os.path.join(temp_output_dir, f"{datacard_config['output']}.txt"),
             "--years", f"{years}",
+            "--variable", f"{self.variable}",
             "--mass", f"{yields_config['mass']}",
-            "--pruneThreshold", f"{datacard_config['pruneThreshold']}",
+            "--prune-threshold", f"{datacard_config['pruneThreshold']}",
             "--analysis", f"{datacard_config['analysis']}",
-            "--output", f"{datacard_config['output']}"
             ]
-        if self.variable != '':
-            arguments.append("--variable")
-            arguments.append(f"{self.variable}")
-        
         if convert_boolean_string(datacard_config["prune"]): arguments.append("--prune")
-        if convert_boolean_string(datacard_config["doTrueYield"]): arguments.append("--doTrueYield")
-        if convert_boolean_string(datacard_config["skipCOWCorr"]): arguments.append("--skipCOWCorr")
-        if convert_boolean_string(datacard_config["doSystematics"]): arguments.append("--doSystematics")
-        if convert_boolean_string(datacard_config["doMCStatUncertainty"]): arguments.append("--doMCStatUncertainty")
-        if convert_boolean_string(datacard_config["doSTXSMerging"]): arguments.append("--doSTXSMerging")
-        if convert_boolean_string(datacard_config["doSTXSScaleCorrelationScheme"]): arguments.append("--doSTXSScaleCorrelationScheme")
-        if convert_boolean_string(datacard_config["saveDataFrame"]): arguments.append("--saveDataFrame")
+        if convert_boolean_string(datacard_config["doTrueYield"]): arguments.append("--true-yield")
+        if convert_boolean_string(datacard_config["skipCOWCorr"]): arguments.append("--skip-cow-corr")
+        if convert_boolean_string(datacard_config["doSystematics"]): arguments.append("--do-systematics")
+        if convert_boolean_string(datacard_config["doMCStatUncertainty"]): arguments.append("--mc-stat")
+        if convert_boolean_string(datacard_config["saveDataFrame"]):
+            arguments += ["--save-dataframe", os.path.join(temp_output_dir, "Dataframe", f"{datacard_config['output']}.pkl")]
     
         command = arguments
         print("Output:", command)
@@ -488,18 +486,18 @@ class MakeDatacard(Task, SlurmWorkflow, HTCondorWorkflow, law.LocalWorkflow): #l
             clean_config = config["datacard_clean"]
             
             datacard_path = os.path.join(temp_output_dir, datacard_config["output"] + ".txt")
-            script_path = os.path.join(os.environ["ANALYSIS_PATH"], "Datacard/cleanDatacard.py")
+            script_path = os.path.join(os.environ["ANALYSIS_PATH"], "scripts/datacard.py")
             arguments = [
                 "python3",
                 script_path,
-                "-d", f"{datacard_path}",
-                "-f", f"{clean_config['factor']}",
-                "--symmetrizeNuisance", f"{clean_config['symmetrizeNuisance']}",
+                "clean",
+                f"{datacard_path}",
+                "--factor", f"{clean_config['factor']}",
+                "--symmetrize", f"{clean_config['symmetrizeNuisance']}",
                 ]
-            
-            if convert_boolean_string(clean_config["removeDoubleSided"]): arguments.append("--removeDoubleSided")
-            if convert_boolean_string(clean_config["removeNonDiagonal"]): arguments.append("--removeNonDiagonal")
-            if convert_boolean_string(clean_config["verbose"]): arguments.append("--verbose")
+            if convert_boolean_string(clean_config["removeDoubleSided"]): arguments.append("--remove-double-sided")
+            if convert_boolean_string(clean_config["removeNonDiagonal"]): arguments.append("--remove-non-diagonal")
+            if convert_boolean_string(clean_config["verbose"]): arguments[2:2] = ["--verbose", "2"]
         
             command = arguments
             print("Output:", command)

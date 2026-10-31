@@ -2,6 +2,14 @@
 
 Now the signal and background models and the datacard has been produced, it is time to run the fits using [combine](https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/). Please refer to the linked manual for the details on fitting and the options you can use.
 
+**Rewrite:** the law tasks of `law_combine.py` (same task names, parameters and outputs) build their commands with `finalfits/combine.py` of the `finalfits` package and run combine, combineTool.py, hadd and the plot scripts as before; the workspace is built by `scripts/combine.py text2workspace` (instead of `RunText2Workspace.py`). The module holds the shared option sets (minimizer, `--X-rtd` discrete profiling, Asimov), one builder per command family (Asimov first step and scans, best fits and scans in data with all uncertainties or stat-only, the three impact steps, robust Hesse, toys, p-value) and the helpers (`parameter_range_for_poi`, `scan_grid_configuration`, nuisances of the ModelConfig, pdf indices of a fit, best-fit values, p-value). The PSI Tier-3 handling (`--batch-flavor slurm/psi`: job scratch, xrootd copies) is unchanged. Small command line tools:
+```
+./scripts/combine.py text2workspace Combine/Datacard_NJ_2023.txt Combine/Datacard_NJ_2023.root --model NJ
+./scripts/combine.py nuisances Combine/Datacard_NJ_2023.root --pois r_NJ_0p0_1p0,... [--exclude 'rgx{...}'] [--all-free]
+./scripts/combine.py pvalue Combine/runFits_NJ/dataFit/higgsCombine.pvalue.MultiDimFit.mH125.07.root --n-pois 5
+```
+All commands (and file operations) of all tasks and branches were compared with the previous `law_combine.py` on the 2023 NJ and inclusive configs (also for slurm/psi): identical, apart from these bug fixes: a failing p-value calculation now fails with its own error instead of a `TypeError`; if the pdf indices cannot be read from the Asimov first step (e.g. the file is missing, ROOT then only prints its `Processing ...` line), they are left out instead of passing that line to `--setParameters`; `PrepareTheDirectory` also works when the signal and background models are in different folders; the correlation matrices get the luminosity of the year (`--year`); the post-fit toys run outside slurm; `UnblindedFitSystSingle` stages its output on slurm/psi like the other tasks. All differences to the previous scripts are listed in [DIFFERENCES.md](../DIFFERENCES.md).
+
 ## Copy everything across
 
 The very first step is to copy your signal and background models, and the `.txt` datacard to this directory. The signal and background models must match the specified paths in the `.txt` datacard (the default is `./Models/signal` and `./Models/background`, you can change this with the `--sigModelWSDir` and `--bkgModelWSDir` options in the `Datacard/RunYields.py` script) i.e.

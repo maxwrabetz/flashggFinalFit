@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finalfits"
+version = "0.1.0"
+description = "FinalFits for H->gg analyses, rewritten step by step as a python package"
+requires-python = ">=3.9"
+# ROOT (with RooFit) comes from the CMSSW environment
+dependencies = ["numpy", "awkward", "uproot", "pyyaml"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools]
+packages = ["finalfits"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+# Only the rewritten code is linted, the step directories follow once they are rewritten
+include = ["finalfits/**/*.py", "scripts/**/*.py", "tests/**/*.py", "Trees2WS/law_trees2ws*.py", "Combine/law_combine.py",
+           "Plots/Spectra/law_spectra.py", "Plots/makeCorrMatrix.py", "Plots/makeSplusBModelPlot.py", "Plots/correctImpacts.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+# %-formats reproduce the fixed column layouts of datacards and plots
+ignore = ["UP031"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["finalfits"]
+known-third-party = ["law"]
+# modules of the steps that are not rewritten yet, put on the PYTHONPATH by law/setup.sh
+known-local-folder = ["Background", "commonObjects", "commonTools", "Datacard", "framework", "pdfindex_utils", "Trees2WS", "XSBRMap"]

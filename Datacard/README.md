@@ -2,6 +2,14 @@
 
 This is where you build the `.txt` datacard to be used for the final fits (see `../Combine`).
 
+**Rewrite:** the law tasks `MakeYields` and `MakeDatacard` now run `scripts/datacard.py` of the `finalfits` package (`finalfits/datacard_yields.py`, `finalfits/datacard.py`); the systematics are still defined in `systematics.py` here. It writes the same yields tables, datacards and cleaned datacards as `makeYields.py`, `makeDatacard.py` and `cleanDatacard.py`:
+```
+./scripts/datacard.py yields Datacards/yields_<ext>/<cat>.pkl -c <cat> --input-ws-dirs <year>=<ws_signal dir>,... --do-systematics ...
+./scripts/datacard.py make Datacards/yields_<ext> Datacards/<name>.txt --years 2023preBPix,2023postBPix --do-systematics --mc-stat ...
+./scripts/datacard.py clean Datacards/<name>.txt --factor 10000 --symmetrize <nuisance1>,<nuisance2>
+```
+Differences: the order of the years in the `shapes` and `pdfindex` lines is now sorted (it was random for several years), STXS merging (`mnorm`) and the STXS scale correlation scheme are not supported. The cleaning with `--symmetrize` is fixed: the factor applies to all values and one-sided values become the symmetric kappa of the deviating side (see [DIFFERENCES.md](../DIFFERENCES.md)).
+
 
 ## Calculate the yields
 

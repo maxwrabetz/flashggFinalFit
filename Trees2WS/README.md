@@ -1,5 +1,16 @@
 # Converting ROOT trees to workspaces
 
+**Current implementation:** `finalfits/trees2ws.py`, run by the law tasks `Trees2WS` (signal MC) and `Trees2WSData` (data) in this directory, or by hand with
+```
+./scripts/trees2ws.py signal config/2023_NJ.yml <HiggsDNA output>.root <output dir> -p ggh -m 125 -y 2023preBPix --variable NJ
+./scripts/trees2ws.py data config/2023_NJ.yml allData_2023.root <output dir>/allData.root
+```
+It is configured by the `trees2wsCfg` block of the analysis config (`config/<year>_<variable>.yml`), including `apply_mass_cut`/`mass_cut_range` (applied to signal and data). Exactly one of `doInOutSplitting` and `doDiffSplitting` must be set; STXS splitting is not implemented.
+
+For the differential splitting, the events are assigned to the bins of `differentialProcTable_` by their particle-level variable (e.g. `GenNJ`) and `fiducialGeometricFlag`. The HiggsDNA systematic trees do not contain the particle-level variables, only the HiggsDNA bin index (`diffVar`): their events are assigned by that index wherever it reproduces the bin on the nominal events. Otherwise (currently the out-of-fiducial bins, which HiggsDNA does not split) the systematic histograms stay empty and a warning is printed; storing the particle-level variable in the systematic trees in HiggsDNA would fix this without changes here.
+
+The scripts below (`trees2ws.py`, `trees2ws_data.py`, `RunWSScripts.py`, ...) are the previous standalone implementation and are no longer used by the law workflow. The rest of this page describes them.
+
 This package offers a brand new functionality of Final Fits which enables you to convert flat ROOT trees to Final Fits compatible workspaces. 
 
 The input options for converting trees to workspaces are steered by a config file:

@@ -206,38 +206,16 @@ class FinalFits(law.WrapperTask):
                     if tmp_path.exists():
                         tmp_path.unlink()
 
-            # --- 7. run RunText2Workspace for new Datacard ---
-            print("Running RunText2Workspace.py...")
-            runtext2ws_path = combine_dir / "RunText2Workspace.py"
-            if self.variable == '':
-                # Inclusive case
-                output_dir = base_dir / f"output_{combined_label}_inclusive"
-
-                cmd = (
-                    f"python3 {runtext2ws_path} "
-                    f"--inputName Datacard_{combined_label} "
-                    f"--outputDir {output_dir} "
-                    f"--outputName Datacard_{combined_label} "
-                    "--mode mu_fiducial "
-                    f"--common_opts \"-m {HIGGS_MASS} higgsMassRange=122,128\" "
-                    "--batch local"
-                )
-            else:
-                # Differential variable case (correct mode = variable)
-                output_dir = base_dir / f"output_{combined_label}_{self.variable}"
-
-                cmd = (
-                    f"python3 {runtext2ws_path} "
-                    f"--inputName Datacard_{self.variable}_{combined_label} "
-                    f"--outputDir {output_dir} "
-                    f"--outputName Datacard_{self.variable}_{combined_label} "
-                    f"--mode {self.variable} "
-                    f"--common_opts \"-m {HIGGS_MASS} higgsMassRange=122,128\" "
-                    "--batch local "
-                    f"--ext {self.variable}"
-                )
-
-            subprocess.run(cmd, shell=True, check=True)
+            # --- 7. text2workspace for the new datacard (finalfits/combine.py) ---
+            print("Running text2workspace...")
+            name = f"Datacard_{combined_label}" if self.variable == '' else f"Datacard_{self.variable}_{combined_label}"
+            cmd = [
+                "python3", str(base_dir / "scripts" / "combine.py"), "text2workspace",
+                str(combined_output_dir / f"{name}.txt"), str(combined_output_dir / f"{name}.root"),
+                "--model", "mu_fiducial" if self.variable == '' else self.variable,
+                "--common-options", f"-m {HIGGS_MASS} higgsMassRange=122,128",
+            ]
+            subprocess.run(cmd, check=True)
 
             print(f"Combined workspace created in {combined_output_dir}")
 

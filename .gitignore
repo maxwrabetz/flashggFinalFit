@@ -4,6 +4,7 @@
 
 # SCRAM business
 __init__.py
+!finalfits/__init__.py
 *.pyc
 
 # CRAB3 stuff
